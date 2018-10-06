@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+
+{% block tittle %}首页{% endblock %}
+
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+
+{% block main %}
+    <ul class="ask-list-group">
+        {% for ask in asks %}
+            <li>
+            <div class="avatar-group">
+                <img src="{{ url_for('static', filename='images/05.jpg') }}" alt="" class="avatar">
+            </div>
+            <div class="ask-group">
+                <p class="ask-tittle"><a href="{{ url_for('detail', detail_id=ask.id) }}">{{ ask.tittle }}</a></p>
+                <p class="ask-content">{{ ask.content }}</p>
+                <div class="ask-info">
+                    <span class="ask-author">{{ ask.author.username }}</span>
+                    <span class="ask-time">{{ ask.create_time }}</span>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+
+    </ul>
+{% endblock %}
